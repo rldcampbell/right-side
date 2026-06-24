@@ -15,7 +15,7 @@ The app should feel quiet, personal, and low-friction. It is not a habit tracker
 - SwiftData persistence.
 - iOS 17 or later.
 - Apple frameworks only unless a compelling technical reason appears later.
-- Standard Xcode project suitable for opening on a personal Mac and running on a personal iPhone via an Apple Developer account.
+- Standard Xcode project suitable for opening in Xcode and running on an iPhone via an Apple Developer account.
 
 ### Local-Only Requirements
 
@@ -183,14 +183,13 @@ It should avoid:
 
 ## Development Workflow Note
 
-The repository should avoid committing personal Apple Developer signing configuration.
+The repository should avoid committing developer-team-specific Apple signing configuration.
 
 Expected workflow:
 
-- Develop and commit source on this managed work laptop when convenient.
-- Pull the repo on a personal Mac.
-- Open the Xcode project on the personal Mac.
-- Select the personal Apple Developer Team in Xcode signing settings.
-- Run the app locally on the personal iPhone.
+- Clone the repository on a Mac with Xcode installed.
+- Open the Xcode project.
+- Select an Apple Developer Team in Xcode signing settings when building for a physical device.
+- Run the app locally on an iPhone or in the iPhone Simulator.
 
 The project should be kept simple and clear enough for a first-time Swift native app workflow with Codex assistance.

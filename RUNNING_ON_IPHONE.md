@@ -1,138 +1,133 @@
-# Running Right Side On Your iPhone
+# Running Right Side On iPhone
 
-This guide is for running the app locally from your personal Mac using your Apple Developer subscription.
+This guide explains how to build and run Right Side locally using Xcode.
 
-## Can We Run It On This Work Machine?
+## Requirements
 
-Possibly in the iPhone Simulator, but not cleanly right now.
+- macOS with Xcode installed.
+- The Xcode license agreement accepted.
+- iOS 17 or later as the deployment target.
+- For simulator builds: an installed iPhone Simulator runtime.
+- For physical iPhone builds: an Apple Developer account, an iPhone running iOS 17 or later, and a valid signing team in Xcode.
 
-This work machine has Xcode installed, but command line builds are currently blocked until the Xcode licence is accepted. The project source has been type-checked against the iPhone Simulator SDK, but a full `xcodebuild` run is not currently available here.
-
-To run on this work machine later:
-
-1. Open Xcode once, or run `sudo xcodebuild -license` in Terminal if permitted.
-2. Open `RightSide.xcodeproj`.
-3. Select an iPhone Simulator.
-4. Press Run.
-
-Running on a physical personal iPhone is better done from your personal Mac, because that is where your Apple ID, developer account, device trust, and signing setup belong.
-
-## Personal Mac Prerequisites
-
-- A personal Mac with Xcode installed.
-- Your Apple ID signed into Xcode.
-- An active Apple Developer subscription.
-- Your personal iPhone running iOS 17 or later.
-- The iPhone connected by USB for the first run, or already paired for wireless development.
-
-## 1. Clone The Repo
-
-After you create a remote and push this repo from the work machine, clone it on your personal Mac:
+## Clone The Repository
 
 ```sh
-git clone <your-remote-url>
+git clone <repository-url>
 cd right-side
-```
-
-Open the project:
-
-```sh
 open RightSide.xcodeproj
 ```
 
-## 2. Sign Into Xcode
+## Confirm Xcode Is Ready
+
+Open Xcode at least once and complete any first-launch setup.
+
+To check command line build readiness:
+
+```sh
+xcodebuild -version
+```
+
+If Xcode reports that the license has not been accepted, review and accept it:
+
+```sh
+sudo xcodebuild -license
+```
+
+## Run In The iPhone Simulator
+
+An Apple Developer account is not required for simulator-only development.
 
 In Xcode:
 
-1. Open `Xcode > Settings`.
-2. Go to `Accounts`.
-3. Add your Apple ID if it is not already there.
-4. Confirm your paid developer team appears under the account.
+1. Select the `RightSide` scheme.
+2. Choose an iPhone Simulator as the run destination.
+3. Press Run.
 
-## 3. Select The App Target
+From the command line, a simulator build can be run with:
+
+```sh
+xcodebuild \
+  -project RightSide.xcodeproj \
+  -scheme RightSide \
+  -destination 'generic/platform=iOS Simulator' \
+  build
+```
+
+To run on a specific simulator device instead, replace the destination with an installed simulator name.
+
+## Configure Signing For A Physical iPhone
 
 In Xcode:
 
 1. Select the project in the left navigator.
 2. Select the `RightSide` target.
 3. Open `Signing & Capabilities`.
-4. Leave `Automatically manage signing` enabled.
-5. Choose your personal Apple Developer Team.
+4. Keep `Automatically manage signing` enabled.
+5. Select an Apple Developer Team.
 
-The project intentionally does not commit a development team ID.
+The project does not commit a development team ID. Xcode may update local project settings after a team is selected.
 
-Xcode may modify `RightSide.xcodeproj/project.pbxproj` when you choose a team. That is normal locally. Before pushing future commits, check whether you want to keep or discard personal signing changes.
+## Bundle Identifier
 
-## 4. Check The Bundle Identifier
+If Xcode reports that the configured bundle identifier is unavailable, change it in `Signing & Capabilities` to a unique reverse-DNS identifier associated with the selected developer account.
 
-The current bundle identifier is:
-
-```text
-com.robertcampbell.rightside
-```
-
-If Xcode reports that the identifier is unavailable, change it in `Signing & Capabilities` to something unique to your developer account, for example:
+Example:
 
 ```text
-com.<yourname>.rightside
+com.yourname.rightside
 ```
 
-## 5. Prepare The iPhone
+## Prepare The iPhone
 
-Connect the iPhone to the Mac.
+1. Connect the iPhone to the Mac.
+2. Unlock the iPhone and trust the Mac if prompted.
+3. Enable Developer Mode if iOS requires it.
+4. In Xcode, open `Window > Devices and Simulators`.
+5. Confirm the iPhone appears and finishes any preparation step.
 
-On the iPhone:
+Developer Mode can be enabled on the iPhone in `Settings > Privacy & Security > Developer Mode`. The device may need to restart.
 
-1. Trust the Mac if iOS asks.
-2. Enable Developer Mode if prompted.
-3. If Developer Mode is not already enabled, go to `Settings > Privacy & Security > Developer Mode`, enable it, and restart the iPhone when asked.
+## Run On The iPhone
 
 In Xcode:
 
-1. Open `Window > Devices and Simulators`.
-2. Confirm the iPhone appears and is paired.
-3. Wait for Xcode to finish any device preparation step.
-
-## 6. Run The App
-
-In the Xcode toolbar:
-
 1. Select the `RightSide` scheme.
-2. Select your iPhone as the run destination.
-3. Press the Run button.
+2. Select the connected iPhone as the run destination.
+3. Press Run.
 
-The first build may take a little while. If signing is correct, Xcode will install and launch Right Side on the iPhone.
+Xcode will build, sign, install, and launch the app. The first device build can take longer while Xcode prepares the device and creates signing assets.
 
 ## First Launch
 
-The app should open to prompt creation because there are no saved prompts yet.
+Right Side starts with no built-in prompts.
 
-Try this flow:
+Suggested first check:
 
-1. Add one short prompt.
+1. Add a short prompt.
 2. Save it.
-3. Go to `Draw`.
+3. Open the `Draw` tab.
 4. Tap `Draw a card`.
 
-With only one prompt, the app can draw the same prompt repeatedly. Once you add more prompts, the v1 recency rule avoids the most recently shown 50% when possible.
+With one saved prompt, the same card can be drawn repeatedly. With multiple prompts, the v1 selection rule avoids the most recently shown 50% of prompts when possible.
 
-## Common Fixes
+## Troubleshooting
 
-If Xcode says it cannot create a provisioning profile:
+If Xcode cannot create a provisioning profile:
 
-- Confirm your paid developer team is selected.
+- Confirm an Apple Developer Team is selected.
 - Confirm the bundle identifier is unique.
-- Confirm the iPhone is registered or available to your developer team.
+- Confirm the connected iPhone can be used for development by the selected team.
 
-If the iPhone does not appear:
+If the iPhone does not appear in Xcode:
 
-- Reconnect by USB.
-- Unlock the phone.
-- Trust the Mac on the phone.
-- Open `Window > Devices and Simulators` and wait.
+- Reconnect the device.
+- Unlock the device.
+- Confirm the Mac is trusted on the device.
+- Open `Window > Devices and Simulators` and wait for preparation to finish.
 
-If the app installs but will not launch:
+If the app installs but does not launch:
 
-- Confirm the iPhone is on iOS 17 or later.
+- Confirm the device is running iOS 17 or later.
 - Confirm Developer Mode is enabled.
-- Try cleaning the build folder with `Product > Clean Build Folder`, then Run again.
+- Run `Product > Clean Build Folder`, then build again.
