@@ -7,6 +7,7 @@ struct PromptEditorView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @State private var text: String
+    @FocusState private var isTextEditorFocused: Bool
 
     init(prompt: PromptCard?) {
         self.prompt = prompt
@@ -29,6 +30,7 @@ struct PromptEditorView: View {
         Form {
             Section {
                 TextEditor(text: $text)
+                    .focused($isTextEditorFocused)
                     .frame(minHeight: 150)
                     .onChange(of: text) { _, newValue in
                         guard newValue.count > PromptRules.maxLength else {
@@ -62,6 +64,9 @@ struct PromptEditorView: View {
                 }
                 .disabled(!canSave)
             }
+        }
+        .onAppear {
+            isTextEditorFocused = true
         }
     }
 
