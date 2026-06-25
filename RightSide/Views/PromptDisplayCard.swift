@@ -15,6 +15,8 @@ struct PromptDisplayCard: View {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .fill(palette.background)
 
+            CardSurfaceTexture(seed: prompt.id, colorScheme: colorScheme)
+
             CardCircles(promptID: prompt.id, palette: palette)
 
             Text(prompt.text)
@@ -32,7 +34,7 @@ struct PromptDisplayCard: View {
         }
         .shadow(color: .black.opacity(colorScheme == .dark ? 0.35 : 0.12), radius: 20, y: 10)
         .frame(maxWidth: 430)
-        .aspectRatio(0.76, contentMode: .fit)
+        .aspectRatio(5.0 / 7.0, contentMode: .fit)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(prompt.text)
     }

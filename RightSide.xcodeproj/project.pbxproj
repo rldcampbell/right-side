@@ -21,6 +21,7 @@
 		A1B2C3D4E5F600000000004B /* PromptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000002B /* PromptsView.swift */; };
 		A1B2C3D4E5F600000000004C /* PromptEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000002C /* PromptEditorView.swift */; };
 		A1B2C3D4E5F600000000004D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000002D /* Assets.xcassets */; };
+		A1B2C3D4E5F600000000004E /* CardSurfaceTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000002E /* CardSurfaceTexture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		A1B2C3D4E5F600000000002B /* PromptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsView.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F600000000002C /* PromptEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEditorView.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F600000000002D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1B2C3D4E5F600000000002E /* CardSurfaceTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSurfaceTexture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				A1B2C3D4E5F6000000000028 /* DrawView.swift */,
 				A1B2C3D4E5F6000000000029 /* PromptDisplayCard.swift */,
 				A1B2C3D4E5F600000000002A /* ReadyCard.swift */,
+				A1B2C3D4E5F600000000002E /* CardSurfaceTexture.swift */,
 				A1B2C3D4E5F600000000002B /* PromptsView.swift */,
 				A1B2C3D4E5F600000000002C /* PromptEditorView.swift */,
 			);
@@ -201,6 +204,7 @@
 				A1B2C3D4E5F6000000000048 /* DrawView.swift in Sources */,
 				A1B2C3D4E5F6000000000049 /* PromptDisplayCard.swift in Sources */,
 				A1B2C3D4E5F600000000004A /* ReadyCard.swift in Sources */,
+				A1B2C3D4E5F600000000004E /* CardSurfaceTexture.swift in Sources */,
 				A1B2C3D4E5F600000000004B /* PromptsView.swift in Sources */,
 				A1B2C3D4E5F600000000004C /* PromptEditorView.swift in Sources */,
 			);

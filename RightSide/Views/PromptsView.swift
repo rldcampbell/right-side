@@ -32,7 +32,8 @@ struct PromptsView: View {
                 }
             }
         }
-        .navigationTitle("Prompts")
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {

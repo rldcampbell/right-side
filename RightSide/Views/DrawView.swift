@@ -47,7 +47,7 @@ struct DrawView: View {
                 Button {
                     drawCard()
                 } label: {
-                    Label("Draw a card", systemImage: "sparkles")
+                    Text("Draw a card")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
@@ -58,7 +58,8 @@ struct DrawView: View {
             }
         }
         .animation(.snappy, value: lastDrawnPrompt?.id)
-        .navigationTitle("Draw")
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
         .padding(.horizontal, 20)
         .padding(.top, 12)
     }

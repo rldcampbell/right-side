@@ -8,6 +8,8 @@ struct ReadyCard: View {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .fill(background)
 
+            CardSurfaceTexture(seed: UUID(uuidString: "00000000-0000-0000-0000-000000000001") ?? UUID(), colorScheme: colorScheme)
+
             Text("Ready when you are.")
                 .font(.system(.title2, design: .serif))
                 .multilineTextAlignment(.center)
@@ -19,7 +21,7 @@ struct ReadyCard: View {
                 .stroke(.quaternary, lineWidth: 1)
         }
         .frame(maxWidth: 430)
-        .aspectRatio(0.76, contentMode: .fit)
+        .aspectRatio(5.0 / 7.0, contentMode: .fit)
     }
 
     private var background: Color {
