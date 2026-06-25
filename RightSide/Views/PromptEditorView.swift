@@ -18,12 +18,20 @@ struct PromptEditorView: View {
         text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
+    private var originalText: String {
+        prompt?.text ?? ""
+    }
+
+    private var hasChanges: Bool {
+        trimmedText != originalText
+    }
+
     private var remainingCharacters: Int {
         PromptRules.maxLength - text.count
     }
 
     private var canSave: Bool {
-        !trimmedText.isEmpty && text.count <= PromptRules.maxLength
+        !trimmedText.isEmpty && text.count <= PromptRules.maxLength && hasChanges
     }
 
     var body: some View {
