@@ -52,6 +52,8 @@ Version 1 should use a simple native tab layout with two tabs:
 
 `Draw` is the primary experience. `Prompts` is where the user manages the source list.
 
+Top-level tab screens should avoid large navigation titles. The interface should feel compact and direct, with the tab bar providing enough context for `Draw` and `Prompts`.
+
 If there are no prompts, the app should guide the user straight to adding the first prompt. The Draw experience should not need to handle a full empty state in version 1 beyond being unavailable or redirecting to prompt creation.
 
 ## Prompt Model
@@ -153,12 +155,15 @@ The app should use standard iOS controls and system typography for most interfac
 The drawn card is the expressive part of the app:
 
 - Prompt text should use a built-in Apple serif style, aiming for a literary feel close to Mrs Eaves without bundling a custom font.
+- Drawn cards should use the aspect ratio of a standard poker-size playing card: 2.5 by 3.5, or 5:7.
 - Card decoration should be generated locally.
 - Decoration should be deterministic from the prompt/card ID, so a card keeps a recognizable visual identity.
 - Each card should receive a theme automatically when created and keep it permanently.
 - Use a small fixed palette of system-friendly themes.
 - Users do not choose colours in v1.
 - The card should have a muted base background colour that works in light and dark mode.
+- The card surface should feel high-quality and subtly tactile, with a restrained paper/card texture rather than a flat digital fill.
+- Texture should be generated locally where practical, remain subtle enough not to interfere with legibility, and work in both light and dark mode.
 - Decoration should use large, soft, translucent overlapping circles around the card edges.
 - Circles should not encroach on or reduce legibility of the central prompt text.
 - The interface should follow the system light/dark appearance.
